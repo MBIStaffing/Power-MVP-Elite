@@ -102,10 +102,10 @@ Try {
                     -MailNickName $MailNickName `
                     -GivenName $Entry.GivenName `
                     -Surname $Entry.Surname `
-		    -ShowInAddressList $TRUE `
-		    -UserType $Entry.UserType `
+		     -ShowInAddressList $TRUE `
+		     -UserType $Entry.UserType `
                     -PasswordProfile $PasswordProfile `
-		    -AccountEnabled $FALSE `
+		     -AccountEnabled $FALSE `
                     -Department $Entry.Department `
                     -City $Entry.City `
                     -TelephoneNumber $Entry.TelephoneNumber `
