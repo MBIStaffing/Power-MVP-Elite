@@ -31,6 +31,8 @@ This example will import all users from a CSV File and then create the correspon
 The user will be asked to change his password at first log on.
 #>
 
+
+
 [CmdletBinding()]
 Param(
     [Parameter(Position=0, Mandatory=$True, HelpMessage='Specify the path of the CSV file')]
@@ -96,14 +98,23 @@ Else {
     
 Try {    
     New-AzureADUser -DisplayName $DisplayName `
-                    -AccountEnabled $false `
-                    -MailNickName $MailNickName `
                     -UserPrincipalName $UserPrincipalName `
+                    -MailNickName $MailNickName `
+                    -GivenName $Entry.GivenName `
+                    -Surname $Entry.Surname `
+		    -ShowInAddressList $TRUE `
+		    -UserType $Entry.UserType `
                     -PasswordProfile $PasswordProfile `
-                    -City $Entry.City `
-                    -Country $Entry.Country `
+		    -AccountEnabled $FALSE `
                     -Department $Entry.Department `
+                    -City $Entry.City `
+                    -TelephoneNumber $Entry.TelephoneNumber `
                     -JobTitle $Entry.JobTitle `
+                    -PostalCode $Entry.PostalCode `
+                    -State $Entry.State `
+                    -OtherMails @($Entry.OtherMails) `
+                    -PhysicalDeliveryOfficeName $Entry.PhysicalDeliveryOfficeName `
+                    -PreferredLanguage $Entry.PreferredLanguage `
                     -Mobile $Entry.Mobile | Out-Null
                         
     Write-Verbose "$DisplayName : AAD Account is created successfully!"   
